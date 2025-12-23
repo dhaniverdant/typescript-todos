@@ -1,3 +1,4 @@
+import TodoItem from "./components/TodoItem"
 import { dummyData } from "./data/todos"
 
 function App() {
@@ -5,10 +6,11 @@ function App() {
   return (
     <main className="py-10 h-screen">
       <h1 className="font-bold text-3xl text-center">MY TODOS</h1>
-      <div>
-        <div>
+      <div className="max-w-lg mx-auto">
+        <div className="space-y-2">
           {dummyData.map(todo => (
-            <h4 key={todo.id}>{todo.title}</h4>
+            // <h4 key={todo.id}>{todo.title}</h4>
+            <TodoItem todo={todo} />
           ))}
         </div>
       </div>
