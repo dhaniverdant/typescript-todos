@@ -1,11 +1,18 @@
+import { useState } from "react";
 import TodoItem from "./components/TodoItem"
 import { dummyData } from "./data/todos"
 
 function App() {
+  const [todos, setTodos] = useState(dummyData);
 
   function setTodoCompleted(id: number, completed: boolean) {
-    alert(
-      `todo with id ${id} is ${completed ? "completed" : "not completed"}`
+    // alert(
+    //   `todo with id ${id} is ${completed ? "completed" : "not completed"}`
+    // );
+    setTodos(prevTodos =>
+      prevTodos.map(todo =>
+        todo.id === id ? { ...todo, completed } : todo
+      )
     );
   }
 
@@ -14,8 +21,7 @@ function App() {
       <h1 className="font-bold text-3xl text-center">MY TODOS</h1>
       <div className="max-w-lg mx-auto bg-slate-100 rounded-md p-5">
         <div className="space-y-2">
-          {dummyData.map(todo => (
-            // <h4 key={todo.id}>{todo.title}</h4>
+          {todos.map(todo => (
             <TodoItem
               key={todo.id}
               todo={todo}
