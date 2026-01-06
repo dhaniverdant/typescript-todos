@@ -3,6 +3,12 @@ import { dummyData } from "./data/todos"
 
 function App() {
 
+  function setTodoCompleted(id: number, completed: boolean) {
+    alert(
+      `todo with id ${id} is ${completed ? "completed" : "not completed"}`
+    );
+  }
+
   return (
     <main className="py-10 h-screen space-y-5">
       <h1 className="font-bold text-3xl text-center">MY TODOS</h1>
@@ -10,7 +16,11 @@ function App() {
         <div className="space-y-2">
           {dummyData.map(todo => (
             // <h4 key={todo.id}>{todo.title}</h4>
-            <TodoItem todo={todo} />
+            <TodoItem
+              key={todo.id}
+              todo={todo}
+              onCompletedChange={setTodoCompleted}
+            />
           ))}
         </div>
       </div>
