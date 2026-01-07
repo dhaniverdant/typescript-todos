@@ -17,11 +17,21 @@ function App() {
     );
   }
 
+  function addTodo(title: string) {
+    const newTodo = {
+      id: todos.length + 1,
+      title,
+      completed: false,
+    };
+    setTodos(prevTodos => [newTodo, ...prevTodos]);
+    console.log("Adding todo:", newTodo);
+  }
+
   return (
     <main className="py-10 h-screen space-y-5">
       <h1 className="font-bold text-3xl text-center">MY TODOS</h1>
       <div className="max-w-lg mx-auto bg-slate-100 rounded-md p-5">
-        <AddTodoForm />
+        <AddTodoForm onSubmit={addTodo} />
         <div className="space-y-2">
           {todos.map(todo => (
             <TodoItem
